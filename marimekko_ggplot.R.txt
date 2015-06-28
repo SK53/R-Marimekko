@@ -1,0 +1,22 @@
+p <- ggplot() +  
+scale_x_continuous(name="Countries (ISO Code)") + 
+scale_y_continuous(name="% Total Retail Outlets by Category") +
+geom_rect(data=r1,mapping=aes(xmin=l,xmax=r,ymin=b,ymax=t,fill=label,,title="category"),color="white") +
+scale_fill_manual(values=cb_pal) +
+guides(fill=guide_legend(key_height=0.8)) +
+#geom_text(data=r1, aes(x=l+(r-l)/2, y=b+(t-b)/2, label=cnt), size=2) + 
+geom_text(data=cc, aes(x=l.1+(r.1-l.1)/2, y=-10, label=iso2cd), size=log(cc$cntr_tot)/4,position=position_jitter(width=((cc$r.1-cc$l.1)/5), height=1.5)) +
+geom_text(data=cc, aes(x=l.1+(r.1-l.1)/2, y=110, label=round((cntr_tot/1000.0),digits=1)), size=2,position=position_jitter( height=1.5)) +
+labs(title="Retail Marimekko : Asia") 
+print(p)
+
+cb_pal<- c( "#E69F00", "#D99600", "#CC8D00",
+"#56B4E9", "#4EA4D4", "#4794BF", 
+"#00B886", "#009E73", "#008561", 
+"#F0E442", "#D6CB3B", "#BDB334", 
+"#0072B2", "#007ABF", "#0083CC", "#008BD9", "#0093E6", 
+"#D55E00", 
+"#CC79A7", "#D981B1", "#E688BC",
+"#fee090", 
+"#999999",  "#999999",  "#999999" ,  "#000000"# unknown & empty values)
+)
